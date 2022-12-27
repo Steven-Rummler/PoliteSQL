@@ -19,6 +19,13 @@
             font-size: 1em;
         }
 
+        p {
+            display: inline;
+            color: #444444;
+            font-family: 'Consolas', monospace;
+            font-size: 0.8em;
+        }
+
         span {
             font-family: monospace;
             font-weight: bolder;
@@ -62,6 +69,8 @@
 <body>
     <h1>PoliteSQL</h1>
     <h2>(because <span>all caps</span> is yelling and yelling isn't nice)</h2>
+    <p><a href="./commandLine.js" download="commandLine.js">Download DBeaver Autoformatter</a> (command is node
+        /path/to/commandLine.js)</p>
     <div><textarea name="" id="sql" cols="30" rows="10" oninput="formatSql()" autofocus></textarea></div>
     <div><textarea name="" id="formattedSql" cols="30" rows="10">Results will be shown here.</textarea></div>
 
