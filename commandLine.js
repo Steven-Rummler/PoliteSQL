@@ -109,7 +109,13 @@ const readline = require('readline').createInterface({
     output: process.stdout,
 });
 
-readline.question(`Enter query:`, query => {
-    console.log(politesql(query));
+const query = [];
+
+readline.prompt();
+
+readline.on('line', line => query.push(line));
+
+readline.on('close', () => {
+    console.log(politesql(query.join('\n')));
     readline.close();
-});
+})
