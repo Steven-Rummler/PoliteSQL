@@ -1,29 +1,9 @@
+import { format } from "./format";
+import { tokenize } from "./tokenize";
+
 export function politesql(query: string): string {
-  return `${query} -> ${tokenize(query).map(token => `'${token}'`).join(', ')}`;
+  return format(tokenize(query));
 }
-
-function tokenize(input: string): string[] {
-  const tokens = [];
-  let currentToken = '';
-  let currentQuote: '\'' | '"' | "`" | null = null;
-
-  for (let i = 0; i < input.length; i++) {
-    const thisCharacter = input[i];
-    if (thisCharacter === undefined) throw new Error('Unexpected end of query while tokenizing.');
-    if (currentQuote === null) {
-      if (spaceCharacters.includes(thisCharacter)) {
-        if (currentToken.length === 0) continue;
-        tokens.push(currentToken);
-        currentToken = '';
-      } else currentToken += thisCharacter;
-    }
-  }
-  tokens.push(currentToken);
-
-  return tokens;
-}
-
-const spaceCharacters = [' ', '\t', '\n', '\r'];
 
 interface Table {
   alias: string;
